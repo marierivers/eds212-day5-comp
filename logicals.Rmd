@@ -1,0 +1,98 @@
+---
+title: "Logicals"
+author: "Marie Rivers"
+date: "8/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Taking a look at `starwars`
+
+```{r, include = FALSE}
+# adding include = FALSE hides the code chunk when you knit
+# ECHO = FALSE hides code
+# look at first few lines
+head(starwars)
+
+# look at dimensions
+dim(starwars)
+```
+```{r, warning = FALSE}
+# to hide warnings in knitted output, set warning = FALSE in the beginning of the code chunk
+# eval = FALSE means the code will show up in the knitted document, but it wont run
+ggplot(data = starwars, aes(x = height, y = mass)) +
+  geom_point(color = "purple")
+```
+
+```{r}
+# return all the names in the data
+starwars$name
+```
+## Find the mean, variance and standard deviation of character height
+```{r}
+sw_height_mean <- mean(starwars$height)
+sw_height_mean
+# the default in the mean function is to NOT remove NA values
+
+sw_height_mean_removeNA <- mean(starwars$height, na.rm = TRUE)
+sw_height_mean_removeNA
+# use ?starwars in the console to more info about the dataset andn the units of height
+
+# using similar naming system, find:
+# variance of character height (var())
+# standard deviation of character height (sd())
+
+sw_height_variance <- var(starwars$height, na.rm = TRUE)
+sw_height_variance
+
+sw_height_sd <- sd(starwars$height, na.rm = TRUE)
+sw_height_sd
+
+```
+
+Mean character height is `r round(sw_height_mean_removeNA, 1)` cm with a standard deviation of `r round(sw_height_sd, 1)` cm.
+
+## Logical Expressions
+
+```{r}
+5 < 10
+# greater than and less then work alphabetically
+"cat" > "armadillo"
+"cat" > "elephant"
+```
+
+```{r}
+10 <= 11
+5 >= 4
+3 <= 1
+```
+
+```{r}
+# play around with vectors
+tarantulas <- c(1, 3, 7, 10, 15)
+tarantulas > 5
+```
+## Logical operators:
+
+- `!`
+- `&`
+- `|`
+```{r}
+3 < 1 | 8 > 2
+
+6 < 10 & 5 < 1
+
+7 != 11
+
+4 != 4 | 2 < 5 | 6 > 10
+
+0 == TRUE
+0 == FALSE
+1 == TRUE #true
+# zero is false and 1 is true
+```
+
